@@ -1,4 +1,4 @@
-package com.hibernix.configuration.multiplatform
+package com.hibernix.configuration.mpp
 
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -10,6 +10,22 @@ fun Project.addMppDependency(name: String) {
 
 fun Project.addMppTestDependency(name: String) {
     dependencies.add("commonTestImplementation", name)
+}
+
+fun Project.addJvmDependency(name: String) {
+    dependencies.add("jvmMainImplementation", name)
+}
+
+fun Project.addAndroidDependency(name: String) {
+    dependencies.add("androidMainImplementation", name)
+}
+
+fun Project.addJsDependency(name: String) {
+    dependencies.add("jsMainImplementation", name)
+}
+
+fun Project.addModuleDependency(name: String) {
+    dependencies.add("commonMainImplementation", project(name))
 }
 
 fun Project.kotlinMultiplatform(action: Action<KotlinMultiplatformExtension>) {

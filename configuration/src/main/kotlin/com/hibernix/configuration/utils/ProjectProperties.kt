@@ -35,7 +35,7 @@ fun retrieveProjectProperties(project: Project): ProjectProperties = with(projec
         version = projectProperty("project.version", version.toString()),
         description = projectProperty("project.description", description ?: ""),
 
-        kotlinVersion = projectProperty("project.versions.kotlin", "1.8.0-RC"),
+        kotlinVersion = projectProperty("project.versions.kotlin", "1.8.0"),
         coroutinesVersion = projectProperty("project.versions.coroutines", "1.6.4"),
         serializationVersion = projectProperty("project.versions.serialization", "1.4.1"),
 

@@ -1,4 +1,4 @@
-package com.hibernix.configuration.multiplatform
+package com.hibernix.configuration.mpp
 
 import com.hibernix.configuration.utils.log
 import com.hibernix.configuration.utils.projectProperties
@@ -10,11 +10,11 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 /**
  * Plugin for configuration of a multiplatform module
  */
-class MultiplatformConfigurationPlugin : Plugin<Project> {
+open class MppConfigurationPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         pluginManager.apply("org.jetbrains.kotlin.multiplatform")
-        target.extensions.create("configuration", MultiplatformConfigurationExtension::class.java, target)
+        target.extensions.create("hxModule", MppConfigurationExtension::class.java, target)
 
         log("Project properties: $projectProperties")
 
@@ -31,8 +31,5 @@ class MultiplatformConfigurationPlugin : Plugin<Project> {
                 }
             }
         }
-
     }
-
-
 }

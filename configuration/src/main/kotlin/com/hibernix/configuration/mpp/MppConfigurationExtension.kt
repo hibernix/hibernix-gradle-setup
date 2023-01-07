@@ -1,4 +1,4 @@
-package com.hibernix.configuration.multiplatform
+package com.hibernix.configuration.mpp
 
 import com.android.build.gradle.BaseExtension
 import com.hibernix.configuration.jvm.configureFatJarTask
@@ -8,17 +8,18 @@ import com.hibernix.configuration.utils.projectProperties
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.invoke
 
-open class MultiplatformConfigurationExtension @Inject constructor(
+open class MppConfigurationExtension @Inject constructor(
     private val project: Project
 ) {
 
-    data class Features(
+    data class ModuleFeatures(
         var coroutines: Boolean = true,
         var serialization: Boolean = false,
+        var publish: Boolean = false,
     )
 
-    fun features(block: Features.() -> Unit) {
-        val features = Features()
+    fun features(block: ModuleFeatures.() -> Unit) {
+        val features = ModuleFeatures()
         block(features)
         setupFeatures(features)
     }
@@ -40,7 +41,7 @@ open class MultiplatformConfigurationExtension @Inject constructor(
         project.setupAndroid()
     }
 
-    /*
+     /**
      * Creates and configures JS target
      */
     fun js() {
@@ -104,9 +105,10 @@ open class MultiplatformConfigurationExtension @Inject constructor(
         }
     }
 
-    private fun setupFeatures(features: Features) {
+    private fun setupFeatures(features: ModuleFeatures) {
         if (features.coroutines) setupCoroutines()
         if (features.serialization) setupSerialization()
+        if (features.publish) setupPublish()
     }
 
     private fun setupSerialization() = with(project) {
@@ -119,5 +121,10 @@ open class MultiplatformConfigurationExtension @Inject constructor(
         log("Configuring coroutines ...")
         addMppDependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:${projectProperties.coroutinesVersion}")
         addMppTestDependency("org.jetbrains.kotlinx:kotlinx-coroutines-test:${projectProperties.coroutinesVersion}")
+    }
+
+    private fun setupPublish() = with(project) {
+        log("Enabling publish ...")
+        project.pluginManager.apply("maven-publish")
     }
 }
