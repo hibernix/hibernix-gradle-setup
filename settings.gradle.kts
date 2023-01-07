@@ -22,5 +22,5 @@ dependencyResolutionManagement {
 */
 }
 
-rootProject.name = "build-config"
+rootProject.name = "hibernix-plugins"
 include(":configuration")
