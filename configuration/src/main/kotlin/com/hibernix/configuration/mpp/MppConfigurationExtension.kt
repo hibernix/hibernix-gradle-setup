@@ -15,7 +15,9 @@ open class MppConfigurationExtension @Inject constructor(
     data class ModuleFeatures(
         var coroutines: Boolean = true,
         var serialization: Boolean = false,
+        var datetime: Boolean = false,
         var publish: Boolean = false,
+        var logging: Boolean = false,
     )
 
     fun features(block: ModuleFeatures.() -> Unit) {
@@ -41,7 +43,7 @@ open class MppConfigurationExtension @Inject constructor(
         project.setupAndroid()
     }
 
-     /**
+    /**
      * Creates and configures JS target
      */
     fun js() {
@@ -108,7 +110,9 @@ open class MppConfigurationExtension @Inject constructor(
     private fun setupFeatures(features: ModuleFeatures) {
         if (features.coroutines) setupCoroutines()
         if (features.serialization) setupSerialization()
+        if (features.datetime) setupDateTime()
         if (features.publish) setupPublish()
+        if (features.logging) setupLogging()
     }
 
     private fun setupSerialization() = with(project) {
@@ -121,6 +125,16 @@ open class MppConfigurationExtension @Inject constructor(
         log("Configuring coroutines ...")
         addMppDependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:${projectProperties.coroutinesVersion}")
         addMppTestDependency("org.jetbrains.kotlinx:kotlinx-coroutines-test:${projectProperties.coroutinesVersion}")
+    }
+
+    private fun setupDateTime() = with(project) {
+        log("Configuring datetime ...")
+        addMppDependency("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+    }
+
+    private fun setupLogging() = with(project) {
+        log("Configuring logging ...")
+        addMppDependency("com.monolyte.monolog:monolog-core:0.1.0-SNAPSHOT")
     }
 
     private fun setupPublish() = with(project) {
