@@ -1,44 +1,33 @@
 # hibernix-plugins
 
-Basic project configuration plugins / settings
+Basic project gradle configuration / setup
 
-
-### com.hibernix.project
-
-<i>Can be applied to main/root project</i>
+### Usage
 
 ```kotlin
 plugins {
-    id("com.hibernix.project")
+    id("com.hibernix.setup")
 }
 
-hxProject {
-  // currently no configuration available
-}
-```
-
-### com.hibernix.mpp.lib
-
-<i>Can be applied to any MPP module</i>
-
-```kotlin
-plugins {
-    id("com.hibernix.mpp.lib")
-}
-
-hxModule {
-    features {
-        coroutines = true
-        serialization = true
-        publish = true
-    }
-
-    // define targets (currently only these supported)
-
+platforms {
+    // all platform targets
     /* if optional mainClass is defined, it will be set up as runnable java app and will bundle all dependencies into the (fat)jar */
     jvm(mainClass = "com.hibernix.PathToMainClassKt")
-    android()
+    android { /* custom configuration in android extension context */ }
+    ios()
+    macOs()
+    linux()
+    tvOs()
+    watchOs()
     js()
+}
+
+features {
+    serialization() // modules that require kotlinx.serialization
+    detekt() // root and modules
+    dokka() // for root and all modules that require documentation
+    publish() // for all modules that should be published
+    dependencyUpdates() // only for root
 }
 ```
 

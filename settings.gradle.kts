@@ -1,6 +1,5 @@
 pluginManagement {
     repositories {
-        mavenLocal()
         mavenCentral()
         gradlePluginPortal()
         google()
@@ -9,9 +8,9 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
-        mavenLocal()
         mavenCentral()
         google()
+        mavenLocal()
     }
 /*
     versionCatalogs {
@@ -22,5 +21,4 @@ dependencyResolutionManagement {
 */
 }
 
-rootProject.name = "hibernix-plugins"
-include(":configuration")
+rootProject.name = "hibernix-gradle-setup"

@@ -1,16 +1,38 @@
-package com.hibernix.configuration.jvm
+package com.hibernix.setup.platforms
 
+import com.hibernix.setup.core.kotlinMultiplatform
+import com.hibernix.setup.core.log
 import org.gradle.api.Project
 import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.tasks.bundling.Jar
+import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.withType
+
+fun Platforms.jvm(mainClass: String? = null) {
+    project.setupJvm(mainClass)
+}
+
+fun Project.setupJvm(mainClass: String? = null) {
+    log("Configuring JVM target")
+    kotlinMultiplatform {
+        jvm()
+        mainClass?.let { configureFatJarTask(it) }
+        sourceSets {
+            maybeCreate("jvmCommonMain").dependsOn(getByName("commonMain"))
+            maybeCreate("jvmCommonTest").dependsOn(getByName("commonTest"))
+
+            maybeCreate("jvmMain").dependsOn(getByName("jvmCommonMain"))
+            maybeCreate("jvmTest").dependsOn(getByName("jvmCommonTest"))
+        }
+    }
+}
 
 /**
  * Creates standalone "fat" jar with all dependencies bundled.
  */
 fun Project.configureFatJarTask(mainClass: String) {
-    tasks.withType<Jar> {
 
+    tasks.withType<Jar> {
         manifest {
             attributes["Main-Class"] = mainClass
         }
@@ -28,3 +50,4 @@ fun Project.configureFatJarTask(mainClass: String) {
         })
     }
 }
+

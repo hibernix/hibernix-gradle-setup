@@ -1,7 +1,6 @@
-package com.hibernix.configuration.utils
+package com.hibernix.setup.core
 
 import org.gradle.api.Project
-import org.gradle.internal.impldep.org.bouncycastle.asn1.x500.style.RFC4519Style.name
 
 /**
  * Centralized logging for plugins and scripts

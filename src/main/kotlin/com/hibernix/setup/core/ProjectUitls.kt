@@ -1,7 +1,7 @@
-package com.hibernix.configuration.mpp
+package com.hibernix.setup.core
 
-import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 fun Project.addMppDependency(name: String) {
@@ -28,6 +28,12 @@ fun Project.addModuleDependency(name: String) {
     dependencies.add("commonMainImplementation", project(name))
 }
 
-fun Project.kotlinMultiplatform(action: Action<KotlinMultiplatformExtension>) {
-    extensions.configure(KotlinMultiplatformExtension::class.java, action)
+fun Project.kotlinMultiplatform(action: KotlinMultiplatformExtension.() -> Unit) {
+    extensions.configure<KotlinMultiplatformExtension>(action)
 }
+
+internal fun Project.ensureRootProject() {
+    check(rootProject == this) { "Must be called on a root project" }
+}
+
+internal val Project.isRootProject get() = rootProject == this
