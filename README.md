@@ -1,4 +1,4 @@
-# Gradle plugin for Hibernix projects setup
+# Gradle plugin for basic projects setup
 
 Basic project gradle configuration / setup
 
