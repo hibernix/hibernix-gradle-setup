@@ -1,6 +1,6 @@
-package com.hibernix.setup.features
+package com.hibernix.tools.setup.features
 
-import com.hibernix.setup.core.isRootProject
+import com.hibernix.tools.setup.core.isRootProject
 import java.time.Year
 import org.gradle.api.Project
 import org.gradle.api.tasks.Delete

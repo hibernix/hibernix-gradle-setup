@@ -1,4 +1,4 @@
-package com.hibernix.setup.core
+package com.hibernix.tools.setup.core
 
 abstract class DefaultConfigHolder<T> {
     var default: T? = null

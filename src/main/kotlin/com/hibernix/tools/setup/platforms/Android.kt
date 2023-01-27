@@ -1,9 +1,10 @@
-package com.hibernix.setup.platforms
+package com.hibernix.tools.setup.platforms
 
 import com.android.build.gradle.BaseExtension
-import com.hibernix.setup.core.DefaultConfigHolder
-import com.hibernix.setup.core.kotlinMultiplatform
-import com.hibernix.setup.platforms.AndroidConfig.Companion.asDefault
+import com.hibernix.tools.setup.Versions
+import com.hibernix.tools.setup.core.DefaultConfigHolder
+import com.hibernix.tools.setup.core.kotlinMultiplatform
+import com.hibernix.tools.setup.platforms.AndroidConfig.Companion.asDefault
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -56,13 +57,13 @@ fun Project.setupAndroid(
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
         }
 
         tasks.withType<KotlinCompile> {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "11"
             }
         }
         block?.invoke(this)
@@ -76,7 +77,11 @@ fun Project.setupAndroid(
             maybeCreate("jvmCommonMain").dependsOn(getByName("commonMain"))
             maybeCreate("jvmCommonTest").dependsOn(getByName("commonTest"))
 
-            maybeCreate("androidMain").dependsOn(getByName("jvmCommonMain"))
+            maybeCreate("androidMain").apply { dependsOn(getByName("jvmCommonMain")) }
+                .dependencies {
+                    val coroutinesVersion = Versions.Coroutines.fromProject(this@setupAndroid)
+                    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+                }
             //maybeCreate("androidTest").dependsOn(getByName("jvmCommonTest"))
         }
     }

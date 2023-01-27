@@ -1,7 +1,8 @@
-package com.hibernix.setup.platforms
+package com.hibernix.tools.setup.platforms
 
-import com.hibernix.setup.core.kotlinMultiplatform
-import com.hibernix.setup.core.projectProperties
+import com.hibernix.tools.setup.Versions
+import com.hibernix.tools.setup.core.kotlinMultiplatform
+import com.hibernix.tools.setup.core.projectProperties
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.invoke
 
@@ -18,13 +19,15 @@ fun Project.platforms(config: Platforms.() -> Unit) {
 
     pluginManager.apply("org.jetbrains.kotlin.multiplatform")
 
+    val coroutinesVersion = Versions.Coroutines.fromProject(this)
+
     kotlinMultiplatform {
         sourceSets {
             maybeCreate("commonMain").dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
             }
             maybeCreate("commonTest").dependencies {
-                // TODO: deps kotlin.test.common and kotlin.test.annotationsCommon?
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
             }
         }
     }

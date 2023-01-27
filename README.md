@@ -6,7 +6,7 @@ Basic project gradle configuration / setup
 
 ```kotlin
 plugins {
-    id("com.hibernix.setup")
+    id("com.hibernix.tools.setup")
 }
 
 platforms {
@@ -15,10 +15,10 @@ platforms {
     jvm(mainClass = "com.hibernix.PathToMainClassKt")
     android { /* custom configuration in android extension context */ }
     ios()
-    macOs()
+    macos()
     linux()
-    tvOs()
-    watchOs()
+    tvos()
+    watchos()
     js()
 }
 
@@ -33,13 +33,22 @@ features {
 
 ### Global configuration properties
 
-These gradle properties, when defined, will be respected and applied by plugins:
+These gradle properties are supported by the plugin:
 ```properties
+# mandatory base project properties
 project.name=Project Name
 project.group=com.hibernix.group
 project.description=Project Description
 project.version=0.0.1-SNAPSHOT
 
+# overrides the default versions of plugin
+project.versions.kotlin=...
+project.versions.coroutines=...
+project.versions.detekt=...
+project.versions.dokka=...
+project.versions.dependencyUpdates=...
+
+# possible android properties
 project.android.minSdk=19
 project.adnroid.compileSdk=33
 project.adroid.targetSdk=33

@@ -1,4 +1,4 @@
-package com.hibernix.setup.core
+package com.hibernix.tools.setup.core
 
 import org.gradle.api.Project
 

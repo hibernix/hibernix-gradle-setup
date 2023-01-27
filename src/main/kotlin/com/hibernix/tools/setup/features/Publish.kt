@@ -1,9 +1,9 @@
-package com.hibernix.setup.features
+package com.hibernix.tools.setup.features
 
-import com.hibernix.setup.core.DefaultConfigHolder
-import com.hibernix.setup.core.LogLevel
-import com.hibernix.setup.core.fromDefault
-import com.hibernix.setup.core.log
+import com.hibernix.tools.setup.core.DefaultConfigHolder
+import com.hibernix.tools.setup.core.LogLevel
+import com.hibernix.tools.setup.core.fromDefault
+import com.hibernix.tools.setup.core.log
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication

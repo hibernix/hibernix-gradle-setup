@@ -1,6 +1,6 @@
-package com.hibernix.setup.features
+package com.hibernix.tools.setup.features
 
-import com.hibernix.setup.core.ensureRootProject
+import com.hibernix.tools.setup.core.ensureRootProject
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.gradle.api.Project

@@ -1,10 +1,10 @@
-package com.hibernix.setup.platforms
+package com.hibernix.tools.setup.platforms
 
-import com.hibernix.setup.core.kotlinMultiplatform
-import com.hibernix.setup.core.log
+import com.hibernix.tools.setup.core.kotlinMultiplatform
+import com.hibernix.tools.setup.core.log
 import org.gradle.api.Project
 
-fun Platforms.watchOs() {
+fun Platforms.watchos() {
     project.setupWatchOs()
 }
 
