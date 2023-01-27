@@ -4,6 +4,7 @@ plugins {
     `kotlin-dsl`
     id("com.gradle.plugin-publish") version publishVersion
     id("com.github.ben-manes.versions") version updateDepsVersion
+    signing
 }
 
 repositories {
@@ -30,16 +31,18 @@ dependencies {
     compileOnly("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion")
     compileOnly("org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion")
     compileOnly("org.jetbrains.dokka:dokka-core:$dokkaVersion")
-    implementation("org.jetbrains.dokka:dokka-base:$dokkaVersion")
+    //implementation("org.jetbrains.dokka:dokka-base:$dokkaVersion")
 }
 
 gradlePlugin {
-    website.set("https://hibernix.com")
+    website.set("https://github.com/hibernix/hibernix-gradle-setup")
+    vcsUrl.set("https://github.com/hibernix/hibernix-gradle-setup.git")
     plugins {
         register("hibernix-gradle-setup") {
             id = "com.hibernix.tools.setup"
-            displayName = "Root project configuration plugin"
-            description = "Plugin for configuration of the whole project"
+            displayName = "Multiplatform project setup plugin"
+            tags.set(listOf("kotlin-multiplatform", "kotlin"))
+            description = "Convenience gradle plugin for basic multiplatform project setup"
             implementationClass = "com.hibernix.tools.setup.ProjectSetupPlugin"
         }
     }

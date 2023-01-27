@@ -6,7 +6,7 @@ Basic project gradle configuration / setup
 
 ```kotlin
 plugins {
-    id("com.hibernix.tools.setup")
+    id("com.hibernix.tools.setup") version "0.1.0"
 }
 
 platforms {
@@ -39,7 +39,7 @@ These gradle properties are supported by the plugin:
 project.name=Project Name
 project.group=com.hibernix.group
 project.description=Project Description
-project.version=0.0.1-SNAPSHOT
+project.version=0.1.0
 
 # overrides the default versions of plugin
 project.versions.kotlin=...

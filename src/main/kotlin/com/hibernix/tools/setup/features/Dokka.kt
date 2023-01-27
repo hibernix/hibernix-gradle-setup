@@ -1,7 +1,6 @@
 package com.hibernix.tools.setup.features
 
 import com.hibernix.tools.setup.core.isRootProject
-import java.time.Year
 import org.gradle.api.Project
 import org.gradle.api.tasks.Delete
 import org.gradle.jvm.tasks.Jar
@@ -9,9 +8,6 @@ import org.gradle.kotlin.dsl.getByName
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.dokka.base.DokkaBase
-import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
 
 fun Features.dokka() {
@@ -23,12 +19,6 @@ internal fun Project.setupDokka() {
     plugins.apply("org.jetbrains.dokka")
 
     if (!isRootProject) return
-
-    tasks.withType<DokkaTask>().configureEach {
-        pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-            footerMessage = "© ${Year.now().value} hibernix s.r.o."
-        }
-    }
 
     val dokkaOutputDir = "$buildDir/dokka"
 
