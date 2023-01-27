@@ -51,5 +51,5 @@ project.versions.dependencyUpdates=...
 # possible android properties
 project.android.minSdk=19
 project.adnroid.compileSdk=33
-project.adroid.targetSdk=33
+project.android.targetSdk=33
 ```
