@@ -1,6 +1,8 @@
 package com.hibernix.tools.setup.core
 
 import org.gradle.api.Project
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
@@ -14,6 +16,10 @@ fun Project.addMppTestDependency(name: String) {
 
 fun Project.addJvmDependency(name: String) {
     dependencies.add("jvmMainImplementation", name)
+}
+
+fun Project.addJvmCommonDependency(name: String) {
+    dependencies.add("jvmCommonMainImplementation", name)
 }
 
 fun Project.addAndroidDependency(name: String) {
@@ -37,3 +43,5 @@ internal fun Project.ensureRootProject() {
 }
 
 internal val Project.isRootProject get() = rootProject == this
+
+val Provider<MinimalExternalModuleDependency>.path get() = get().run { "$group:$name:$version" }

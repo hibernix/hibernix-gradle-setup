@@ -35,9 +35,9 @@ fun retrieveProjectProperties(project: Project): ProjectProperties = with(projec
         version = projectProperty("project.version", version.toString()),
         description = projectProperty("project.description", description ?: ""),
 
-        kotlinVersion = projectProperty("project.versions.kotlin", "1.8.0"),
+        kotlinVersion = projectProperty("project.versions.kotlin", "1.8.20"),
         coroutinesVersion = projectProperty("project.versions.coroutines", "1.6.4"),
-        serializationVersion = projectProperty("project.versions.serialization", "1.4.1"),
+        serializationVersion = projectProperty("project.versions.serialization", "1.5.0"),
 
         androidMinSdk = projectProperty("project.android.minSdk", "19"),
         androidTargetSdk = projectProperty("project.android.targetSdk", "33"),

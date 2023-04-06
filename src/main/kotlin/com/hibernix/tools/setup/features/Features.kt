@@ -27,7 +27,7 @@ fun Features.logging(version: String? = null) = with(project) {
     addMppDependency("com.monolyte.monolog:monolog-core:$loggingVersion")
 }
 
-private fun Features.dateTime(version: String? = null) = with(project) {
+fun Features.datetime(version: String? = null) = with(project) {
     val dateTimeVersion = version ?: Versions.Datetime.fromProject(project)
     log("Configuring datetime")
     addMppDependency("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")

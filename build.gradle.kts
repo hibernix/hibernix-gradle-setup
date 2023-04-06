@@ -47,3 +47,68 @@ gradlePlugin {
         }
     }
 }
+
+val javadocJar = tasks.register<Jar>("javadocJar") {
+    //dependsOn(deleteDokkaOutputDir, tasks.dokkaHtml)
+    archiveClassifier.set("javadoc")
+    //from(dokkaOutputDir)
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Release"
+            setUrl { "https://hibernix.jfrog.io/artifactory/release" }
+            credentials {
+                username = System.getenv("SONATYPE_USERNAME")
+                password = System.getenv("SONATYPE_PASSWORD")
+            }
+        }
+        maven {
+            name = "Snapshot"
+            setUrl { "https://hibernix.jfrog.io/artifactory/snapshot" }
+            credentials {
+                username = System.getenv("SONATYPE_USERNAME")
+                password = System.getenv("SONATYPE_PASSWORD")
+            }
+        }
+    }
+    publications {
+        withType<MavenPublication> {
+            //artifact(tasks["javadocJar"])
+
+            pom {
+                name.set(project.name)
+                description.set("Multiplatform project setup plugin")
+                url.set("https://github.com/hibernix/hibernix-gradle-setup")
+
+                licenses {
+                    license {
+                        name.set("Apache License 2.0")
+                        url.set("https://github.com/hibernix/hibernix-gradle-setup/LICENSE")
+                    }
+                }
+                scm {
+                    url.set("https://github.com/hibernix/hibernix-gradle-setup")
+                    connection.set("scm:git:git://github.com/hibernix/hibernix-gradle-setup.git")
+                }
+                developers {
+                    developer {
+                        name.set("hibernix")
+                        url.set("https://hibernix.com")
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+/*
+    useInMemoryPgpKeys(
+        System.getenv("GPG_PRIVATE_KEY"),
+        System.getenv("GPG_PRIVATE_PASSWORD")
+    )
+*/
+    sign(publishing.publications)
+}
