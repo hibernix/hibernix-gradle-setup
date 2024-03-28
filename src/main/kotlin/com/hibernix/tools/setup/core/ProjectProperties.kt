@@ -1,5 +1,6 @@
 package com.hibernix.tools.setup.core
 
+import com.hibernix.tools.setup.Versions
 import org.gradle.api.Project
 
 /**
@@ -18,6 +19,9 @@ data class ProjectProperties(
     val androidMinSdk: String,
     val androidTargetSdk: String,
     val androidCompileSdk: String,
+
+    /** Custom properties */
+    val properties: MutableMap<String, Any?> = mutableMapOf()
 )
 
 private var projectProperties: ProjectProperties? = null
@@ -26,7 +30,7 @@ private fun getProjectProps(project: Project): ProjectProperties =
     projectProperties
         ?: retrieveProjectProperties(project).also { projectProperties = it }
 
-private fun Project.projectProperty(id: String, default: String) = findProperty(id) as String? ?: default
+fun Project.projectProperty(id: String, default: String) = findProperty(id) as String? ?: default
 
 fun retrieveProjectProperties(project: Project): ProjectProperties = with(project) {
     ProjectProperties(
@@ -35,13 +39,13 @@ fun retrieveProjectProperties(project: Project): ProjectProperties = with(projec
         version = projectProperty("project.version", version.toString()),
         description = projectProperty("project.description", description ?: ""),
 
-        kotlinVersion = projectProperty("project.versions.kotlin", "1.8.20"),
-        coroutinesVersion = projectProperty("project.versions.coroutines", "1.6.4"),
-        serializationVersion = projectProperty("project.versions.serialization", "1.5.0"),
+        kotlinVersion = projectProperty(Versions.Kotlin.property, Versions.Kotlin.version),
+        coroutinesVersion = projectProperty("project.versions.coroutines", Versions.Coroutines.version),
+        serializationVersion = projectProperty("project.versions.serialization", Versions.Serialization.version),
 
-        androidMinSdk = projectProperty("project.android.minSdk", "19"),
-        androidTargetSdk = projectProperty("project.android.targetSdk", "33"),
-        androidCompileSdk = projectProperty("project.android.compileSdk", "33"),
+        androidMinSdk = projectProperty("project.android.minSdk", "21"),
+        androidTargetSdk = projectProperty("project.android.targetSdk", "34"),
+        androidCompileSdk = projectProperty("project.android.compileSdk", "34"),
     )
 }
 

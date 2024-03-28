@@ -22,7 +22,7 @@ fun Project.setupDetekt() {
             parallel = true
             buildUponDefaultConfig = true
             if (file("$rootDir/detekt.yml").exists()) {
-                config = files("$rootDir/detekt.yml")
+                config.setFrom(files("$rootDir/detekt.yml"))
             }
         }
 

@@ -20,7 +20,7 @@ internal fun Project.setupDokka() {
 
     if (!isRootProject) return
 
-    val dokkaOutputDir = "$buildDir/dokka"
+    val dokkaOutputDir = "${layout.buildDirectory}/dokka"
 
     tasks.getByName<DokkaTask>("dokkaHtml") {
         dokkaSourceSets.maybeCreate("jvmCommonTest")

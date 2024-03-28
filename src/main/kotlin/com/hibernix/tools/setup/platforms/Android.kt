@@ -70,7 +70,7 @@ fun Project.setupAndroid(
     }
 
     kotlinMultiplatform {
-        android {
+        androidTarget {
             publishLibraryVariants("release", "debug")
         }
         sourceSets {

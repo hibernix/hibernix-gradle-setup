@@ -1,9 +1,14 @@
+import com.hibernix.tools.setup.features.DependencyUpdatesMinStability
+import com.hibernix.tools.setup.features.dependencyUpdates
+import com.hibernix.tools.setup.features.features
+
 plugins {
     val publishVersion: String by System.getProperties()
     val updateDepsVersion: String by System.getProperties()
     `kotlin-dsl`
     id("com.gradle.plugin-publish") version publishVersion
     id("com.github.ben-manes.versions") version updateDepsVersion
+    id("com.hibernix.tools.setup") version "0.3.5"
     signing
 }
 
@@ -16,6 +21,10 @@ repositories {
 
 group = requireNotNull(property("project.group")) { "No groupId declared in 'project.group' property" }
 version = requireNotNull(property("project.version")) { "No project version declared in 'project.version'" }
+
+features {
+    dependencyUpdates(DependencyUpdatesMinStability.RC)
+}
 
 dependencies {
     val agpVersion: String by project
@@ -58,10 +67,13 @@ publishing {
     repositories {
         maven {
             name = "Release"
-            setUrl { "https://hibernix.jfrog.io/artifactory/release" }
+            //setUrl { "https://hibernix.jfrog.io/artifactory/release" }
+            setUrl { "https://packagecloud.io/hibernix/repo/maven2" }
             credentials {
-                username = System.getenv("SONATYPE_USERNAME")
-                password = System.getenv("SONATYPE_PASSWORD")
+                //username = System.getenv("SONATYPE_USERNAME")
+                username = "7ae5f1223fccaa0e11ec20a6ead46c2e59fac02b61198dd8"
+                //password = System.getenv("SONATYPE_PASSWORD")
+                password = ""
             }
         }
         maven {
@@ -112,3 +124,14 @@ signing {
 */
     sign(publishing.publications)
 }
+
+/*
+tasks.named("dependencyUpdates", com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask::class).configure {
+    val immaturityLevels = listOf(*/
+/*"rc", *//*
+"beta", "m", "alpha", "preview", "dev") // order is important
+    val immaturityRegexes = immaturityLevels.map { ".*[.\\-]$it[.\\-\\d]*".toRegex(RegexOption.IGNORE_CASE) }
+    fun immaturityLevel(version: String): Int = immaturityRegexes.indexOfLast { version.matches(it) }
+    rejectVersionIf { immaturityLevel(candidate.version) > immaturityLevel(currentVersion) }
+}
+*/
