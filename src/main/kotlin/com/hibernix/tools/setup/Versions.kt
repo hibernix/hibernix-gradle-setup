@@ -6,11 +6,11 @@ import org.gradle.api.Project
  * Versions of components provided by plugin, which can be overridden by project using predefined properties.
  */
 enum class Versions(var version: String, val property: String) {
-    Kotlin("1.9.23", "project.versions.kotlin"),
-    Ksp("1.9.23-1.0.19", "project.versions.ksp"),
-    Coroutines("1.8.0", "project.versions.coroutines"),
-    Serialization("1.6.3", "project.versions.serialization"),
-    Datetime("0.6.0-RC.2", "project.versions.datetime"),
+    Kotlin("2.0.0", "project.versions.kotlin"),
+    Ksp("2.0.0-1.0.21", "project.versions.ksp"),
+    Coroutines("1.8.1", "project.versions.coroutines"),
+    Serialization("1.7.0-RC", "project.versions.serialization"),
+    Datetime("0.6.0", "project.versions.datetime"),
     Logging("0.1.0-SNAPSHOT", "project.versions.logging"),
     ;
 
@@ -19,11 +19,11 @@ enum class Versions(var version: String, val property: String) {
 }
 
 object LibVersions {
-    var kotlin = "1.9.23"
-    var ksp = "1.9.23-1.0.19"
-    var coroutines = "1.8.0"
-    var serialization = "1.6.2"
-    var datetime = "0.6.0-RC.2"
+    var kotlin = "2.0.0"
+    var ksp = "2.0.0-1.0.21"
+    var coroutines = "1.8.1"
+    var serialization = "1.7.0-RC"
+    var datetime = "0.6.0"
     var logging = "0.1.0-SNAPSHOT"
 }
 

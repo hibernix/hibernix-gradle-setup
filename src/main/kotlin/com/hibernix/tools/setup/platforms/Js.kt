@@ -23,9 +23,11 @@ private fun Project.setupJs() {
                 }
             }
             nodejs {
+/*
                 testTask {
                     useCommonJs()
                 }
+*/
             }
         }
     }
