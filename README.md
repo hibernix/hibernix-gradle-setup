@@ -49,7 +49,7 @@ project.versions.dokka=...
 project.versions.dependencyUpdates=...
 
 # possible android properties
-project.android.minSdk=19
-project.adnroid.compileSdk=33
-project.android.targetSdk=33
+project.android.minSdk=21
+project.android.compileSdk=34
+project.android.targetSdk=34
 ```

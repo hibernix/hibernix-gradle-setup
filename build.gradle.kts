@@ -8,7 +8,7 @@ plugins {
     `kotlin-dsl`
     id("com.gradle.plugin-publish") version publishVersion
     id("com.github.ben-manes.versions") version updateDepsVersion
-    id("com.hibernix.tools.setup") version "0.3.5"
+    id("com.hibernix.tools.setup") version "0.3.7"
     signing
 }
 

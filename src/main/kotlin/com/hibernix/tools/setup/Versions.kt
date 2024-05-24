@@ -11,7 +11,7 @@ enum class Versions(var version: String, val property: String) {
     Coroutines("1.8.1", "project.versions.coroutines"),
     Serialization("1.7.0-RC", "project.versions.serialization"),
     Datetime("0.6.0", "project.versions.datetime"),
-    Logging("0.1.0-SNAPSHOT", "project.versions.logging"),
+    Logging("0.2.0", "project.versions.logging"),
     ;
 
     fun fromProject(project: Project): String =
@@ -24,7 +24,7 @@ object LibVersions {
     var coroutines = "1.8.1"
     var serialization = "1.7.0-RC"
     var datetime = "0.6.0"
-    var logging = "0.1.0-SNAPSHOT"
+    var logging = "0.2.0"
 }
 
 fun libVersions(init: LibVersions.() -> Unit) {
