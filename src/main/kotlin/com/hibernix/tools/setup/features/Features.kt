@@ -15,6 +15,11 @@ fun Project.features(config: Features.() -> Unit) {
     Features(this).apply(config)
 }
 
+fun Features.ksp(version: String? = null) {
+    val kspVersion = version ?: Versions.Ksp.fromProject(project)
+    project.plugins.apply("com.google.devtools.ksp")
+}
+
 fun Features.serialization(version: String? = null) {
     val serializationVersion = version ?: Versions.Serialization.fromProject(project)
     project.pluginManager.apply("org.jetbrains.kotlin.plugin.serialization")
