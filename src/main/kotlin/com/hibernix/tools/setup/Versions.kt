@@ -9,7 +9,7 @@ enum class Versions(var version: String, val property: String) {
     Kotlin("2.1.0", "project.versions.kotlin"),
     Ksp("${Kotlin.version}-1.0.29", "project.versions.ksp"),
     Coroutines("1.10.1", "project.versions.coroutines"),
-    Serialization("1.8.0-RC", "project.versions.serialization"),
+    Serialization("1.8.0", "project.versions.serialization"),
     Datetime("0.6.1", "project.versions.datetime"),
     Logging("0.2.1", "project.versions.logging"),
     ;
