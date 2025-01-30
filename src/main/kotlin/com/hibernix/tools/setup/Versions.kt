@@ -6,7 +6,7 @@ import org.gradle.api.Project
  * Versions of components provided by plugin, which can be overridden by project using predefined properties.
  */
 enum class Versions(var version: String, val property: String) {
-    Kotlin("2.1.0", "project.versions.kotlin"),
+    Kotlin("2.1.10", "project.versions.kotlin"),
     Ksp("${Kotlin.version}-1.0.29", "project.versions.ksp"),
     Coroutines("1.10.1", "project.versions.coroutines"),
     Serialization("1.8.0", "project.versions.serialization"),
