@@ -20,15 +20,9 @@ object Libs {
 }
 
 enum class Lxibs {
-
     kotlin(),
 
-
-
     ;
-    object Versions {
-        var kotlin = "2.0.0"
-    }
 
 
 }
