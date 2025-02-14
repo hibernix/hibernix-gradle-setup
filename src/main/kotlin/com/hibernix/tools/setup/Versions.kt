@@ -7,10 +7,10 @@ import org.gradle.api.Project
  */
 enum class Versions(var version: String, val property: String) {
     Kotlin("2.1.10", "project.versions.kotlin"),
-    Ksp("${Kotlin.version}-1.0.29", "project.versions.ksp"),
+    Ksp("${Kotlin.version}-1.0.30", "project.versions.ksp"),
     Coroutines("1.10.1", "project.versions.coroutines"),
     Serialization("1.8.0", "project.versions.serialization"),
-    Datetime("0.6.1", "project.versions.datetime"),
+    Datetime("0.6.2", "project.versions.datetime"),
     Logging("0.2.1", "project.versions.logging"),
     ;
 
